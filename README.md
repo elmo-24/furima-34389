@@ -1,15 +1,15 @@
 ## users テーブル
 
-| Column          | Type     | Options     |
-| --------------- | -------- | ----------- |
-| nickname        | string   | null: false |
-| email           | string   | null: false |
-| password        | string   | null: false |
-| last name       | string   | null: false |
-| first name      | string   | null: false |
-| last name kana  | string   | null: false |
-| first name kana | string   | null: false |
-| birth date      | datetime | null: false |
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| nickname           | string   | null: false               |
+| email              | string   | null: false, unique: true |
+| encrypted_password | string   | null: false               |
+| last_name          | string   | null: false               |
+| first_name         | string   | null: false               |
+| last_name_kana     | string   | null: false               |
+| first_name_kana    | string   | null: false               |
+| birth_date         | date     | null: false               |
 
 ### Association
 
@@ -24,10 +24,10 @@
 | name                  | text       | null: false                    |
 | info                  | text       | null: false                    |
 | category_id           | integer    | null: false                    |
-| sales status_id       | integer    | null: false                    |
-| shipping fee_id       | integer    | null: false                    |
+| sales_status_id       | integer    | null: false                    |
+| shipping_fee_id       | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
-| scheduled delivery_id | integer    | null: false                    |
+| scheduled_delivery_id | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
@@ -52,13 +52,15 @@
 
 ## ships テーブル
 
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| postal code      | string     | null: false |
-| prefecture_id    | integer    | null: false |
-| city             | string     | null: false |
-| shipping address | string     | null: false |
-| phone number     | integer    | null: false |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| city             | string     | null: false                    |
+| shipping_address | string     | null: false                    |
+| phone_number     | string     | null: false                    |
+| building_name    | string     |                                |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
