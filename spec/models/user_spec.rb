@@ -125,7 +125,6 @@ RSpec.describe User, type: :model do
         @user.password = 'テストテスト'
         @user.password_confirmation = 'テストテスト'
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
