@@ -6,6 +6,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :Scheduled_delivery
   belongs_to_active_hash :Shipping_fee
 
+  has_one_attached :image
+  belongs_to :user
+
   with_options presence: true do
     validates :name
     validates :info
