@@ -93,31 +93,31 @@ RSpec.describe Item, type: :model do
         end
 
         it 'sales_statusで1を選択している場合登録できない' do
-          @item.sales_status_id = '1'
+          @item.sales_status_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Sales status must be other than 1")
         end
 
         it 'shipping_feeで1を選択している場合登録できない' do
-          @item.shipping_fee_id = '1'
+          @item.shipping_fee_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
         end
 
         it 'prefectureで1を選択している場合登録できない' do
-          @item.prefecture_id = '1'
+          @item.prefecture_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
         end
 
         it 'scheduled_deliveryで1を選択している場合登録できない' do
-          @item.scheduled_delivery_id = '1'
+          @item.scheduled_delivery_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
         end
 
         it 'categoryで1を選択している場合登録できない' do
-          @item.category_id = '1'
+          @item.category_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Category must be other than 1")
         end
