@@ -74,13 +74,13 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("User must exist")
         end
 
-        it 'priceは、¥300~以下だと出品できない' do
+        it 'priceは、¥300未満だと出品できない' do
           @item.price = 100
           @item.valid?
           expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
         end
 
-        it 'priceは¥9,999,999以上だと出品できない' do
+        it 'priceは¥10000000以上だと出品できない' do
           @item.price = 10000000
           @item.valid?
           expect(@item.errors.full_messages).to include("Price must be less than 10000000")
