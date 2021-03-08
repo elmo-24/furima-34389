@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderShip, type: :model do
   before do
-    @order_ship = FactoryBot.build(:order_ship)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_ship = FactoryBot.build(:order_ship, item_id: item.id, user_id: user.id)
+    sleep 0.1
   end
 
   context '商品購入ができる時' do
@@ -10,12 +13,8 @@ RSpec.describe OrderShip, type: :model do
       @order_ship.building_name = ''
       expect(@order_ship).to be_valid
     end
-
-    it "tokenがあれば保存ができること" do
-      expect(@order_ship).to be_valid
-    end
   
-    it '郵便番号、都道府県、市区町村、番地、電話番号があれば保存できること' do
+    it '郵便番号、都道府県、市区町村、番地、電話番号、tokenがあれば保存できること' do
        expect(@order_ship).to be_valid
     end
   end
@@ -85,6 +84,18 @@ RSpec.describe OrderShip, type: :model do
       @order_ship.prefecture_id = 0
       @order_ship.valid?
       expect(@order_ship.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it 'user_idが空では登録できない' do
+      @order_ship.user_id = nil
+      @order_ship.valid?
+      expect(@order_ship.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'item_idが空では登録できない' do
+      @order_ship.item_id = nil
+      @order_ship.valid?
+      expect(@order_ship.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
