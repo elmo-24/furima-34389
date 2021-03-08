@@ -41,7 +41,8 @@ class OrdersController < ApplicationController
     if current_user == @item.user
       redirect_to root_path
     end
-
-    
+    unless @item.order.present?
+      redirect_to root_path
+    end
   end
  end
