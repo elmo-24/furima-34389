@@ -38,10 +38,7 @@ class OrdersController < ApplicationController
 
   def set_redirect
     @item = Item.find(params[:item_id])
-    if current_user == @item.user
-      redirect_to root_path
-    end
-    unless @item.order.present?
+    if current_user == @item.user && @item.order.blank?
       redirect_to root_path
     end
   end
