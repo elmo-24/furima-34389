@@ -11,7 +11,7 @@ RSpec.describe OrderShip, type: :model do
       expect(@order_ship).to be_valid
     end
 
-    it "item_idとuser_idとtokenがあれば保存ができること" do
+    it "tokenがあれば保存ができること" do
       expect(@order_ship).to be_valid
     end
   
@@ -62,41 +62,29 @@ RSpec.describe OrderShip, type: :model do
       @order_ship.valid?
       expect(@order_ship.errors.full_messages).to include("Phone number can't be blank")
     end
-
-    it "item_idが空では登録できないこと" do
-      @order_ship.item_id = ''
-      @order_ship.valid?
-      expect(@order_ship.errors.full_messages).to include("Item can't be blank")
-    end
   
     it "tokenが空では登録できないこと" do
       @order_ship.token = ''
       @order_ship.valid?
       expect(@order_ship.errors.full_messages).to include("Token can't be blank")
     end
-  
-    it 'user_idが空では登録できないこと' do
-      @order_ship.user_id = ''
-      @order_ship.valid?
-      expect(@order_ship.errors.full_messages).to include("User can't be blank")
-    end
 
     it '電話番号が全角数字だと登録できないこと' do
       @order_ship.phone_number = '０８０２２２２４４４４'
       @order_ship.valid?
-      expect(@order_ship.errors.full_messages).to include("Phone number can't be blank")
+      expect(@order_ship.errors.full_messages).to include("Phone number is invalid")
     end
 
     it '電話番号が半角数字のみでないとだと登録できないこと' do
       @order_ship.phone_number = '080-2222-4444'
       @order_ship.valid?
-      expect(@order_ship.errors.full_messages).to include("Phone number can't be blank")
+      expect(@order_ship.errors.full_messages).to include("Phone number is invalid")
     end
 
-    it 'prefectureで1を選択している場合登録できない' do
-      @order_ship.prefecture_id = 1
+    it 'prefectureで0を選択している場合登録できない' do
+      @order_ship.prefecture_id = 0
       @order_ship.valid?
-      expect(@order_ship.errors.full_messages).to include("Prefecture must be other than 1")
+      expect(@order_ship.errors.full_messages).to include("Prefecture can't be blank")
     end
   end
 end
