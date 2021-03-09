@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
         card: order_params[:token],
         currency: 'jpy'
       )
+      
   end
 
   def set_redirect
