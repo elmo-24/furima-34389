@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
         amount: @item.price,
         card: order_params[:token],
         currency: 'jpy'
-      )
       
   end
 
